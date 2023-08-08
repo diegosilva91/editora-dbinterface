@@ -633,7 +633,11 @@ class Extractor extends DBInterfaceBase
                     $this->debug("CACHE:: preview desactivado\n");
                     if ($this->setupCache()) {
                         $this->debug("CACHE:: setupCache OK\n");
-                        $result = $this->mc->get($memcache_key);
+                        try {
+                            $result = $this->mc->get($memcache_key);
+                        } catch (\Exception) {
+                            return false;
+                        }
                         if ($result) {
                             $this->debug("CACHE:: HIT! VALUE=\n");
                             $this->debug($result);

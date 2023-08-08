@@ -574,7 +574,7 @@ class DBInterfaceBase
                 $mc = new \Memcached;
                 $mc->setOption(\Memcached::OPT_COMPRESSION, true);
                 $memcacheAvailable = $mc->addServer('localhost', 11211);
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 return false;
             }
         } elseif (extension_loaded('Memcache')) {
@@ -582,7 +582,7 @@ class DBInterfaceBase
             try {
                 $mc = new \Memcache;
                 $memcacheAvailable = $mc->connect('localhost', 11211);
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 return false;
             }
         } else {
